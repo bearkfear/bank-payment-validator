@@ -1,0 +1,35 @@
+{
+    "extends": "react-native-wcandillon",
+    "rules": {
+        "indent": ["off"],
+        "@typescript-eslint/ban-ts-comment": ["off"],
+        "max-len": [
+            "error",
+            {
+                "ignoreStrings": true,
+                "code": 180
+            }
+        ],
+        "@typescript-eslint/no-empty-interface": ["off"],
+        "@typescript-eslint/no-var-requires": ["off"],
+        "camelcase": ["off"],
+        "@typescript-eslint/no-empty-function": ["off"],
+        "@typescript-eslint/consistent-type-imports": ["off"],
+        "no-shadow": ["off"],
+        "no-undef": ["off"],
+        "import/order": ["off"],
+        "no-eval": ["off"],
+        "import/no-default-export": ["off"],
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "eslint-comments/no-unused-disable": ["off"],
+        "@typescript-eslint/no-namespace": ["off"]
+    },
+    "overrides": [
+        {
+            "files": ["**/*.e2e.js", "**/*.e2e.jsx", "**/*.e2e.ts", "**/*.e2e.tsx"]
+        }
+    ],
+    "env": {
+        "jest": true
+    }
+}
