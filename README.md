@@ -1,7 +1,5 @@
-# MONALISTA SERVER
+# BANK PAYMENT VALIDATOR
 
-This make part of 9list company (fake)
+This is just a codebar validation server.
 
 
-[![Deploy](https://github.com/bearkfear/9list-monalista-server/actions/workflows/deploy.yml/badge.svg)](https://github.com/bearkfear/9list-monalista-server/actions/workflows/deploy.yml)
-[![Verify build](https://github.com/bearkfear/9list-monalista-server/actions/workflows/build_production_testing.yml/badge.svg)](https://github.com/bearkfear/9list-monalista-server/actions/workflows/build_production_testing.yml)

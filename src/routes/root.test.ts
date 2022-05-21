@@ -7,6 +7,6 @@ test("root", async () => {
     fastify.register(Root);
     const response = await fastify.inject({method: "GET", url: "/"});
 
-    expect(response.body).toBe(JSON.stringify({root: true}));
+    expect(JSON.parse(response.body)).toMatchObject({root: true});
     expect(response.statusCode).toBe(200);
 });
