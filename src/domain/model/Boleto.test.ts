@@ -1,4 +1,4 @@
-import {BoletoController} from "./BoletoController";
+import {BoletoController} from "./Boleto";
 import successPaymentResults from "../../fixtures/successPaymentResults.json";
 
 describe("test if the given inputs to validate would get the right results", () => {

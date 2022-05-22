@@ -22,7 +22,8 @@
         "import/no-default-export": ["off"],
         "@typescript-eslint/no-explicit-any": ["off"],
         "eslint-comments/no-unused-disable": ["off"],
-        "@typescript-eslint/no-namespace": ["off"]
+        "@typescript-eslint/no-namespace": ["off"],
+        "prefer-destructuring": ["off"]
     },
     "overrides": [
         {
