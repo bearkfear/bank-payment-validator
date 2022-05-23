@@ -17,23 +17,19 @@ export class Titulo extends Boleto {
 
         return structure.join("");
     }
-    findAmountAndExpiration(field5 = "", currentDate = new Date()) {
+    findAmountAndExpiration(field5: string, currentDate = new Date()) {
         const expirationFactor = field5.substring(0, 4);
         const amount = parseFloat(field5.substring(4).replace(/(\d{1,})(\d{2}$)/gm, "$1.$2"));
 
         let baseDate = new Date(1997, 9, 7);
 
         const factorRestart = new Date(2025, 1, 22);
-        if (
-            currentDate.getFullYear() >= factorRestart.getFullYear() &&
-            currentDate.getMonth() >= factorRestart.getMonth() &&
-            currentDate.getDay() >= factorRestart.getDay()
-        ) {
+        if (currentDate.getTime() > factorRestart.getTime()) {
             baseDate = addDays(factorRestart, -1000);
         }
 
         const expirationDate = addDays(baseDate, Number(expirationFactor));
-        const formatedExpirationDate = format(expirationDate, "yyyy-MM-dd");
+        const formatedExpirationDate = Number(expirationFactor) === 0 ? "" : format(expirationDate, "yyyy-MM-dd");
 
         return {
             amount: amount.toFixed(2),
@@ -41,7 +37,7 @@ export class Titulo extends Boleto {
         };
     }
 
-    findFields(writableLine = "") {
+    findFields(writableLine: string) {
         if (writableLine.length !== 47) {
             throw new Error("Inválido, tamanho incorreto!");
         }
@@ -61,7 +57,7 @@ export class Titulo extends Boleto {
         };
     }
 
-    validate(writableLine: string) {
+    validate(writableLine: string, imperativeFieldsValid = false) {
         const fields = this.findFields(writableLine);
         const isFieldsWithDvValid = [fields.field1, fields.field2, fields.field3].every(field => {
             const fieldWithoutDv = field.substring(0, field.length - 1);
@@ -69,12 +65,13 @@ export class Titulo extends Boleto {
             return this.modulo10(fieldWithoutDv) === dv;
         });
 
-        if (isFieldsWithDvValid === false) {
+        if (isFieldsWithDvValid === false && imperativeFieldsValid === false) {
             throw new Error("Digito verificador inválido!");
         }
 
         const barCode = this.generateCodebar(fields);
         const barCodeWithoutDv = barCode.substring(0, 4) + barCode.substring(5);
+
         if (Number(fields.k) !== this.modulo11(barCodeWithoutDv)) {
             throw new Error("Digito verificador do código de barras inválido!");
         }

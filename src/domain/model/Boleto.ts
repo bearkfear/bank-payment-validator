@@ -5,8 +5,8 @@ export type Fields = {
     k: string;
     field5: string;
 };
-export abstract class Boleto {
-    modulo10(fieldWithoutDv: string) {
+export class Boleto {
+    modulo10(fieldWithoutDv: string, imperativeUseDv = -1) {
         const reducedValues = fieldWithoutDv
             .split("")
             .reverse()
@@ -24,7 +24,9 @@ export abstract class Boleto {
 
         const divisionRest = reducedValues % 10;
         const nextDozens = Math.ceil(divisionRest / 10.0) * 10;
-        const dv = nextDozens - divisionRest;
+        let dv = nextDozens - divisionRest;
+
+        dv = imperativeUseDv > -1 ? imperativeUseDv : dv;
 
         if (dv === 10) {
             return 0;

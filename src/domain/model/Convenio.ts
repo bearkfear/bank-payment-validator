@@ -8,7 +8,7 @@ export class Convenio extends Boleto {
         }
         throw new Error("Linha digitável inválida");
     }
-    findAmountAndExpiration(barCode = "") {
+    findAmountAndExpiration(barCode: string) {
         const amount = parseFloat(barCode.substring(5, 15).replace(/(\d{1,})(\d{2}$)/gm, "$1.$2"));
         return {
             amount: amount.toFixed(2),
@@ -40,23 +40,20 @@ export class Convenio extends Boleto {
         return "MODULE_11";
     }
 
-    validate(writableLine: string) {
+    validate(writableLine: string, imperativeIgnoreValidateBarCode = false) {
         if (Number(writableLine[0]) !== 8) {
             throw new Error("Código inválido, não possui identificação de arrecadação");
         }
         const barCode = this.generateBarCode(writableLine);
         const isBarCodeValid = this.validateVerificationDigitBarCode(barCode);
 
-        if (isBarCodeValid === false) {
+        if (isBarCodeValid === false && imperativeIgnoreValidateBarCode === false) {
             throw new Error("Código de barras não bate com DV");
         }
 
         const amountAndExpiration = this.findAmountAndExpiration(barCode);
 
-        const findedFields = writableLine.match(/\d{12}/);
-        if (!findedFields) {
-            throw new Error("Código inválido, tamanho incorreto");
-        }
+        const findedFields = writableLine.match(/\d{12}/) || [];
 
         const moneyCode = Number(barCode[2]);
         const moduleToUse = this.findModuleToUse(moneyCode);
@@ -70,6 +67,7 @@ export class Convenio extends Boleto {
             if (moduleToUse === "MODULE_10") {
                 return this.modulo10(item.field) === Number(item.fieldDv);
             }
+            return this.modulo11(item.field) === Number(item.fieldDv);
         });
 
         if (!isFieldsValid) {

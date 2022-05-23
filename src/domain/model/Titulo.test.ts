@@ -8,6 +8,24 @@ describe("test if the given inputs to validate would get the right results", () 
             expect(boletoControllerResult).toEqual(paymentTest.output);
         });
     });
+
+    test("should throw error when some dv not match", async () => {
+        try {
+            const response = new Titulo().validate("21290001193110001210904475617405975870000002000");
+            expect(response).toBeFalsy();
+        } catch (error) {
+            expect(error.message).toBe("Digito verificador inválido!");
+        }
+    });
+
+    test("should throw error when some dv from generated barCode not match", async () => {
+        try {
+            const response = new Titulo().validate("21290001192110001210904475617405275870000002000", true);
+            expect(response).toBeFalsy();
+        } catch (error) {
+            expect(error.message).toBe("Digito verificador do código de barras inválido!");
+        }
+    });
 });
 
 describe("test if the find fields would return object with right positions", () => {
@@ -42,10 +60,18 @@ describe("test if the find fields would return object with right positions", () 
             expect(boletoControllerResult).toMatchObject(data.output);
         });
     });
+
+    test("should throw error when size is less than 47 chars", async () => {
+        try {
+            const boletoControllerResult = new Titulo().findFields("123");
+        } catch (error) {
+            expect(error.message).toBe("Inválido, tamanho incorreto!");
+        }
+    });
 });
 
 describe("test if the expiration date and amount would be captured correctly", () => {
-    const testData = [
+    const testDataBefore2025 = [
         {
             input: "75870000002000",
             output: {
@@ -55,10 +81,35 @@ describe("test if the expiration date and amount would be captured correctly", (
         }
     ];
 
-    testData.forEach(data => {
-        test(`should ${data.input} return right values`, async () => {
-            const boletoControllerResult = new Titulo().findAmountAndExpiration(data.input);
+    testDataBefore2025.forEach(data => {
+        test(`should ${data.input} return right values before 2025`, async () => {
+            const boletoControllerResult = new Titulo().findAmountAndExpiration(data.input, new Date(2022, 4, 22));
             expect(boletoControllerResult).toMatchObject(data.output);
+        });
+    });
+
+    const testDataAfter2025 = [
+        {
+            input: "75870000002000",
+            output: {
+                amount: "20.00",
+                expirationDate: "2043-03-07"
+            }
+        }
+    ];
+
+    testDataAfter2025.forEach(data => {
+        test(`should ${data.input} return right values after 2025`, async () => {
+            const boletoControllerResult = new Titulo().findAmountAndExpiration(data.input, new Date(2025, 4, 22));
+            expect(boletoControllerResult).toMatchObject(data.output);
+        });
+    });
+
+    test("should return empty when no expiration date", async () => {
+        const boletoControllerResult = new Titulo().findAmountAndExpiration("00000000002000", new Date(2025, 4, 22));
+        expect(boletoControllerResult).toMatchObject({
+            amount: "20.00",
+            expirationDate: ""
         });
     });
 });
