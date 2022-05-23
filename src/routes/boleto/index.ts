@@ -12,24 +12,24 @@ const params = {
 const opts = {
     schema: {
         description: "Valida código de barra",
-        params
-        // response: {
-        //     200: {
-        //         type: "object",
-        //         properties: {
-        //             barCode: {
-        //                 type: "string"
-        //             },
-        //             amount: {
-        //                 type: "string"
-        //             },
-        //             expirationDate: {
-        //                 type: "string"
-        //             }
-        //         },
-        //         required: ["barCode", "amount", "expirationDate"]
-        //     }
-        // }
+        params,
+        response: {
+            200: {
+                type: "object",
+                properties: {
+                    barCode: {
+                        type: "string"
+                    },
+                    amount: {
+                        type: "string"
+                    },
+                    expirationDate: {
+                        type: "string"
+                    }
+                },
+                required: ["barCode", "amount", "expirationDate"]
+            }
+        }
     }
 };
 

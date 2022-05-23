@@ -1,10 +1,10 @@
-import {BoletoController} from "./Boleto";
-import successPaymentResults from "../../fixtures/successPaymentResults.json";
+import {Titulo} from "./Titulo";
+import successPaymentResults from "../../fixtures/successPaymentTitulo.json";
 
 describe("test if the given inputs to validate would get the right results", () => {
     successPaymentResults.forEach(paymentTest => {
         test(`should ${paymentTest.input} return ${paymentTest.output.barCode}`, async () => {
-            const boletoControllerResult = new BoletoController(paymentTest.input).validate();
+            const boletoControllerResult = new Titulo().validate(paymentTest.input);
             expect(boletoControllerResult).toEqual(paymentTest.output);
         });
     });
@@ -38,7 +38,7 @@ describe("test if the find fields would return object with right positions", () 
 
     testData.forEach(data => {
         test(`should ${data.input} return right`, async () => {
-            const boletoControllerResult = new BoletoController(data.input).findFields(data.input);
+            const boletoControllerResult = new Titulo().findFields(data.input);
             expect(boletoControllerResult).toMatchObject(data.output);
         });
     });
@@ -57,7 +57,7 @@ describe("test if the expiration date and amount would be captured correctly", (
 
     testData.forEach(data => {
         test(`should ${data.input} return right values`, async () => {
-            const boletoControllerResult = new BoletoController(data.input).findAmountAndExpiration(data.input);
+            const boletoControllerResult = new Titulo().findAmountAndExpiration(data.input);
             expect(boletoControllerResult).toMatchObject(data.output);
         });
     });
@@ -80,7 +80,7 @@ describe("test if generation of the codebar will work correcly", () => {
 
     testData.forEach(data => {
         test(`should the fields passed to the generator return ${data.output}`, async () => {
-            const boletoControllerResult = new BoletoController("").generateCodebar(data.input);
+            const boletoControllerResult = new Titulo().generateCodebar(data.input);
             expect(boletoControllerResult).toBe(data.output);
         });
     });
