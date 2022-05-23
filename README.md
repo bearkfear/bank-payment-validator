@@ -2,13 +2,18 @@
 
 Validador de linhas digitáveis para titulo bancário e Convenio bancário
 
+<hr />
+
 ## Instruções
 
+### dependências
 Para rodar o projeto é necessário instalar as dependências.
 
 ```sh
 yarn install
 ```
+
+
 
 ### Executar o servidor
 
@@ -18,11 +23,13 @@ o servidor está rodando na porta 8080 mas é configuravel pelo arquivo `.env`. 
 yarn dev
 ```
 
-Após ter o servidor online, é possível acessar a documentação em
+Após ter o servidor online, é possível acessar a documentação (gerada pelo swagger) em
 
 ```sh
 http://localhost:8080/docs
 ```
+
+<hr />
 
 ## Testes
 
@@ -43,6 +50,8 @@ yarn coverage
 é possível que peça para instalar o `live-server` para mostrar a página web do istanbul.
 
 os arquivos de testes foram feitos ao lado do código fonte.
+
+<hr />
 
 ## Dados de teste
 
