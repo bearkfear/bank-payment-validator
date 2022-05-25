@@ -1,4 +1,4 @@
-FROM node:16 as build-stage
+FROM node:18 as build-stage
 
 WORKDIR /build
 COPY package.json ./
@@ -14,7 +14,7 @@ COPY . .
 RUN yarn build:ts
 
 
-FROM node:16
+FROM node:18
 
 COPY --from=build-stage /build/node_modules ./node_modules
 COPY --from=build-stage /build/package*.json ./
