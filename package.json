@@ -50,7 +50,7 @@
         "babel-jest": "28.1.0",
         "concurrently": "7.2.0",
         "cross-env": "7.0.3",
-        "eslint": "^8.15.0",
+        "eslint": "8.24.0",
         "eslint-config-react-native-wcandillon": "^3.8.0",
         "fastify-tsconfig": "1.0.1",
         "jest": "28.1.0",
