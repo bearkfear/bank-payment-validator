@@ -972,7 +972,7 @@
   dependencies:
     ajv "^6.12.6"
 
-"@fastify/autoload@^4.0.1":
+"@fastify/autoload@^4.0.0":
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/@fastify/autoload/-/autoload-4.0.1.tgz#7b3008af96ef0cd20926e01b04aaae0a2c4e225b"
   integrity sha512-eiKxDuz83gFID9LN2BVma0sj3gqDqP8sCHbNN4JmLGe2YNzrSQ+11axweIV8eu1tfWu6v8rgTqu/nu59QXhlsw==
@@ -3555,22 +3555,6 @@ fastest-levenshtein@^1.0.12:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/fastest-levenshtein/-/fastest-levenshtein-1.0.12.tgz#9990f7d3a88cc5a9ffd1f1745745251700d497e2"
   integrity sha512-On2N+BpYJ15xIC974QNVuYGMOlEVt4s0EOI3wwMqOmK1fdDY+FN/zltPV8vosq4ad4c/gJ1KHScUn/6AWIgiow==
-
-"fastify-autoload-deprecated@npm:fastify-autoload@3.12.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/fastify-autoload/-/fastify-autoload-3.12.0.tgz#912c7c48c83e732cc76919b4f3713ee884fc8557"
-  integrity sha512-qm8HG8V24A0AdcIjGMMTnyKQj6yzEbdcXHbWjzPtYPReGo4D4Ki7oRLDocYQJVpaOxlcLJSbadfMhZTu3+G6oQ==
-  dependencies:
-    pkg-up "^3.1.0"
-    semver "^7.3.5"
-
-fastify-autoload@^3.13.0:
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/fastify-autoload/-/fastify-autoload-3.13.0.tgz#1de1b45c5ff98a022643140a39cc868b18ff9442"
-  integrity sha512-+Dbsf7wUxf9KLBHnbcdI1MTUGPHAnjWnbbq1bZm4+b2ghX+goK8HBkWOpS4JK1GAiripoDoyUBw18wu8uDZKuA==
-  dependencies:
-    fastify-autoload-deprecated "npm:fastify-autoload@3.12.0"
-    process-warning "^1.0.0"
 
 fastify-cli@3.1.0:
   version "3.1.0"
