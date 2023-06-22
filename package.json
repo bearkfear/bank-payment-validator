@@ -36,11 +36,11 @@
         "@babel/core": "7.17.12",
         "@babel/preset-env": "7.17.12",
         "@babel/preset-typescript": "7.17.12",
-        "@semantic-release/changelog": "6.0.1",
+        "@semantic-release/changelog": "6.0.3",
         "@semantic-release/commit-analyzer": "9.0.2",
         "@semantic-release/git": "10.0.1",
-        "@semantic-release/github": "8.0.4",
-        "@semantic-release/npm": "9.0.1",
+        "@semantic-release/github": "8.1.0",
+        "@semantic-release/npm": "9.0.2",
         "@semantic-release/release-notes-generator": "10.0.3",
         "@types/jest": "27.5.1",
         "@types/lodash": "^4.14.182",
@@ -55,7 +55,7 @@
         "fastify-tsconfig": "1.0.1",
         "jest": "28.1.0",
         "prettier": "^2.6.2",
-        "semantic-release": "19.0.2",
+        "semantic-release": "19.0.5",
         "ts-node": "10.7.0",
         "typescript": "^4.5.4"
     }
